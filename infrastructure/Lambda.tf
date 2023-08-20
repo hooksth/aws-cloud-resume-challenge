@@ -1,3 +1,4 @@
+#Lambda Function
 resource "aws_lambda_function" "API" {
     filename = data.archive_file.zip.output_path
     function_name = "cloudresume-api"
@@ -8,7 +9,7 @@ resource "aws_lambda_function" "API" {
 
 
 }
-
+#IAM Role
 resource "aws_iam_role" "iam_for_lambda" {
   name = "iam_for_lambda"    
   assume_role_policy = <<EOF
@@ -28,6 +29,7 @@ resource "aws_iam_role" "iam_for_lambda" {
 EOF
 }
 
+
 data "aws_iam_policy_document" "assume_role" {
   statement {
     effect = "Allow"
@@ -41,6 +43,7 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
+#Policy that will allow lambda and dynamodb to talk
 resource "aws_iam_policy" "iam_policy_for_lambda_to_DynamoDB" {
 
   name        = "aws_iam_policy_for_lambda_to_DynamoDB"
@@ -72,6 +75,7 @@ resource "aws_iam_policy" "iam_policy_for_lambda_to_DynamoDB" {
   })
 }
 
+#Attaching the policy to the role
 resource "aws_iam_policy_attachment" "attach_policy" {
   name = "service-attachment"
   roles = [aws_iam_role.iam_for_lambda.name]
