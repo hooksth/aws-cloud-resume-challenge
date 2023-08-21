@@ -89,6 +89,7 @@ data "archive_file" "zip" {
   output_path = "${path.module}/lambda/function.py.zip"
 }
 
+#Function URL with CORS
 resource "aws_lambda_function_url" "url" {
   function_name = aws_lambda_function.API.function_name
   authorization_type = "NONE"
