@@ -16,7 +16,7 @@ terraform {
     region = "us-east-1"
     dynamodb_table = "tf-state-lock"
     bucket = "terraform-state-tavaris"
-    key = "global/s3/terraform.tfstate"
+    key = "terraform.tfstate"
     encrypt = true
   }
 }

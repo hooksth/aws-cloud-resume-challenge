@@ -11,5 +11,5 @@ resource "aws_dynamodb_table" "tf_lock" {
 }
 
 resource "aws_dynamodb_table" "view-count" {
-      
+      name = "cloudresume-count"
 }
