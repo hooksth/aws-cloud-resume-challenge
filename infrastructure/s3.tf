@@ -21,8 +21,6 @@ terraform {
   }
 }
 
-
-
 resource "aws_s3_bucket" "infrastructure" {
   bucket = "terraform-state-tavaris"
 
@@ -32,7 +30,7 @@ resource "aws_s3_bucket" "infrastructure" {
   }
 
   versioning {
-    enabled  = true
+    enabled  = false
 
   }
 
