@@ -43,7 +43,7 @@ resource "aws_s3_bucket" "infrastructure" {
   }
   tags = {
     "name" = "infrastructure"
-    "infra" = "back-end"
+    "infra" = "back-endddd"
   }
 }
 
