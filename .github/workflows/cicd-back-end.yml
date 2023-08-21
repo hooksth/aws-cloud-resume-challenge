@@ -1,0 +1,36 @@
+name: Infra Deployment
+on:
+  push:
+    branches:
+      - main
+jobs:
+
+  terraform:
+    name: Terraform Infrastructure
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+      AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - name: Init
+      id: init
+      run: terraform init
+
+    - name: plan
+      id: plan
+      run: terraform plan
+
+    - name: Manual Approval Checkpoint
+      uses: trstringer/manual-approval@v1.6.0
+      with:
+        secret: ${{ github.TOKEN }}
+        minimum-approvals: 1
+        approvers: hooksth
+        
+    - name: terraform apply
+      id: apply
+      run: terraform apply -auto-approve
