@@ -30,7 +30,7 @@ resource "aws_s3_bucket" "infrastructure" {
   }
 
   versioning {
-    enabled  = false
+    enabled  = true
 
   }
 
