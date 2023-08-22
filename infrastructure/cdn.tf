@@ -1,3 +1,5 @@
+
+#Distribution
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
     domain_name              =  "cloudresume001.s3.us-east-1.amazonaws.com"
